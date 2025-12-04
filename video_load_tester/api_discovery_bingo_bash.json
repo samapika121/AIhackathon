@@ -1,0 +1,20 @@
+{
+  "game_name": "bingo bash",
+  "possible_urls": [
+    "https://api.bingobash",
+    "https://bingobash-api.com",
+    "https://backend.bingobash",
+    "https://server.bingobash",
+    "https://game-api.bingobash",
+    "https://bingobash.herokuapp.com",
+    "https://bingobash-backend.herokuapp.com"
+  ],
+  "working_apis": [],
+  "recommendations": [
+    "No APIs found automatically. Try these methods:",
+    "1. Use network monitoring tools (Charles Proxy, Wireshark)",
+    "2. Check the game's developer documentation",
+    "3. Look for API references in the game's mobile app",
+    "4. Contact the game developers for API documentation"
+  ]
+}

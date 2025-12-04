@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveOps Calendar</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- SheetJS library for Excel/Google Sheets support -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>LiveOps Calendar</h1>
+            <p class="subtitle">Track your live operations and events</p>
+        </div>
+        
+        <div class="import-section-top">
+            <h3>Import from Google Sheets</h3>
+            
+            <div class="import-method">
+                <h4>Method 1: Copy & Paste Directly</h4>
+                <p class="import-instructions">Select all data in your Google Sheet (Ctrl+A), copy it (Ctrl+C), then paste here:</p>
+                <textarea id="pasteArea" placeholder="Paste your Google Sheet data here (Date and Title columns)..." class="paste-area"></textarea>
+                <button id="importPaste" class="import-btn">Import from Paste</button>
+            </div>
+            
+            <div class="import-divider">OR</div>
+            
+            <div class="import-method">
+                <h4>Method 2: Upload File</h4>
+                <p class="import-instructions">Download as Excel (.xlsx) or CSV, then upload:</p>
+                <div class="import-controls-top">
+                    <input type="file" id="csvFile" accept=".csv,.xlsx,.xls" class="file-input">
+                    <button id="importCSV" class="import-btn">Import File</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-section">
+            <h3>Search from my calendar</h3>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Type 'sale' or 'event' to search..." class="search-input" autocomplete="off">
+                <button id="searchBtn" class="search-btn">Search</button>
+                <button id="clearSearch" class="clear-search-btn">Clear</button>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+        
+        <div class="calendar-controls">
+            <button id="prevMonth" class="nav-btn">‹ Previous</button>
+            <h2 id="currentMonth"></h2>
+            <button id="nextMonth" class="nav-btn">Next ›</button>
+            <button id="clearAllBtn" class="clear-all-btn">🗑️ Clear All Events</button>
+        </div>
+        
+        <div class="calendar-grid" id="calendarGrid">
+            <div class="day-header">Sun</div>
+            <div class="day-header">Mon</div>
+            <div class="day-header">Tue</div>
+            <div class="day-header">Wed</div>
+            <div class="day-header">Thu</div>
+            <div class="day-header">Fri</div>
+            <div class="day-header">Sat</div>
+        </div>
+    </div>
+
+    <!-- 🔽 Event Detail Modal (new) -->
+    <div id="eventModal" class="event-modal hidden">
+        <div class="event-modal-content">
+            <span id="closeModal" class="close-btn">✖</span>
+            <h2 id="modalDateTitle"></h2>
+            <div id="modalEventList"></div>
+        </div>
+    </div>
+
+    <!-- 🔽 Inline styles for the modal (you can move to styles.css if you like) -->
+    <style>
+        .event-modal {
+            position: fixed;
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .event-modal.hidden {
+            display: none;
+        }
+
+        .event-modal-content {
+            background: #ffffff;
+            padding: 20px;
+            width: 420px;
+            max-width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .event-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .event-item:last-child {
+            border-bottom: none;
+        }
+
+        .event-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .event-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    
+    <script src="app.js"></script>
+</body>
+</html>

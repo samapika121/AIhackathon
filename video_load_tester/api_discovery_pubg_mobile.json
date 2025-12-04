@@ -1,0 +1,20 @@
+{
+  "game_name": "PUBG Mobile",
+  "possible_urls": [
+    "https://api.pubgmobile",
+    "https://pubgmobile-api.com",
+    "https://backend.pubgmobile",
+    "https://server.pubgmobile",
+    "https://game-api.pubgmobile",
+    "https://pubgmobile.herokuapp.com",
+    "https://pubgmobile-backend.herokuapp.com"
+  ],
+  "working_apis": [],
+  "recommendations": [
+    "No APIs found automatically. Try these methods:",
+    "1. Use network monitoring tools (Charles Proxy, Wireshark)",
+    "2. Check the game's developer documentation",
+    "3. Look for API references in the game's mobile app",
+    "4. Contact the game developers for API documentation"
+  ]
+}
