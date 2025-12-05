@@ -19,28 +19,28 @@
             <h3>Import from Google Sheets</h3>
             
             <div class="import-method">
-                <h4>Method 1: Copy & Paste Directly</h4>
-                <p class="import-instructions">Select all data in your Google Sheet (Ctrl+A), copy it (Ctrl+C), then paste here:</p>
-                <textarea id="pasteArea" placeholder="Paste your Google Sheet data here (Date and Title columns)..." class="paste-area"></textarea>
-                <button id="importPaste" class="import-btn">Import from Paste</button>
-            </div>
-            
-            <div class="import-divider">OR</div>
-            
-            <div class="import-method">
-                <h4>Method 2: Upload File</h4>
-                <p class="import-instructions">Download as Excel (.xlsx) or CSV, then upload:</p>
+                <h4>Connect n8n Webhook</h4>
+                <p class="import-instructions">Paste your n8n webhook URL to fetch data automatically:</p>
                 <div class="import-controls-top">
-                    <input type="file" id="csvFile" accept=".csv,.xlsx,.xls" class="file-input">
-                    <button id="importCSV" class="import-btn">Import File</button>
+                    <input type="url" id="webhookUrl" placeholder="https://your-n8n-instance.com/webhook/..." class="webhook-input">
+                    <button id="importWebhook" class="import-btn">Fetch from n8n</button>
                 </div>
+                <button id="saveWebhook" class="save-webhook-btn">💾 Save Webhook URL</button>
             </div>
         </div>
         
         <div class="search-section">
-            <h3>Search from my calendar</h3>
+            <h3>date and title</h3>
+            
+            <div class="filter-section">
+                <label for="fairFilter">Filter by Fair:</label>
+                <select id="fairFilter" class="fair-filter">
+                    <option value="">All Fairs</option>
+                </select>
+            </div>
+            
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Type 'sale' or 'event' to search..." class="search-input" autocomplete="off">
+                <input type="text" id="searchInput" placeholder="Type to search events..." class="search-input" autocomplete="off">
                 <button id="searchBtn" class="search-btn">Search</button>
                 <button id="clearSearch" class="clear-search-btn">Clear</button>
             </div>
@@ -64,73 +64,23 @@
             <div class="day-header">Sat</div>
         </div>
     </div>
-
-    <!-- 🔽 Event Detail Modal (new) -->
-    <div id="eventModal" class="event-modal hidden">
-        <div class="event-modal-content">
-            <span id="closeModal" class="close-btn">✖</span>
-            <h2 id="modalDateTitle"></h2>
-            <div id="modalEventList"></div>
+    
+    <!-- Day Events Modal -->
+    <div id="dayEventsModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="modalDayTitle">Events for Selected Day</h2>
+            <p class="modal-description">Click an event to select it, or use search to filter:</p>
+            
+            <div class="modal-search-box">
+                <input type="text" id="modalSearchInput" placeholder="Type to filter events for this day..." class="modal-search-input" autocomplete="off">
+                <button id="modalSearchBtn" class="modal-search-btn">Search</button>
+                <button id="modalClearSearch" class="modal-clear-btn">Clear</button>
+            </div>
+            
+            <div id="modalEventsList" class="modal-events-list"></div>
         </div>
     </div>
-
-    <!-- 🔽 Inline styles for the modal (you can move to styles.css if you like) -->
-    <style>
-        .event-modal {
-            position: fixed;
-            top: 0; 
-            left: 0;
-            width: 100%; 
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-
-        .event-modal.hidden {
-            display: none;
-        }
-
-        .event-modal-content {
-            background: #ffffff;
-            padding: 20px;
-            width: 420px;
-            max-width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-            position: relative;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 12px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        .event-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .event-item:last-child {
-            border-bottom: none;
-        }
-
-        .event-item a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .event-item a:hover {
-            text-decoration: underline;
-        }
-    </style>
     
     <script src="app.js"></script>
 </body>
